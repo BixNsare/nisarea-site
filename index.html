@@ -2,163 +2,316 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#10100f">
-  <meta name="description" content="NİSAREA Minecraft sunucusuna katıl! Macera burada başlıyor.">
-  <title>NİSAREA | Minecraft Sunucusu</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #10100f;
-      color: #f5f5f5;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 8%;
-      border-bottom: 1px solid #292929;
-    }
-    .logo { font-size: 25px; font-weight: 900; letter-spacing: 3px; }
-    .logo span { color: #7cdb64; }
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      margin-left: 22px;
-      font-size: 14px;
-    }
-    .hero {
-      min-height: 76vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 70px 20px;
-      background: radial-gradient(ellipse at center, #243c24 0%, #10100f 68%);
-    }
-    .tag {
-      color: #9bea80;
-      border: 1px solid #41663b;
-      padding: 9px 15px;
-      border-radius: 30px;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-    h1 { font-size: clamp(48px, 9vw, 92px); margin: 24px 0 12px; letter-spacing: 5px; }
-    h1 span { color: #83e66b; }
-    .hero p { color: #c4c4c4; max-width: 560px; line-height: 1.8; }
-    .buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
-    .btn {
-      display: inline-block;
-      padding: 15px 23px;
-      border-radius: 7px;
-      background: #83e66b;
-      color: #10100f;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid #83e66b;
-      cursor: pointer;
-    }
-    .btn.secondary { background: transparent; color: white; border-color: #555; }
-    section { padding: 65px 8%; text-align: center; }
-    h2 { font-size: 30px; }
-    .muted { color: #aaa; line-height: 1.8; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; margin-top: 30px; }
-    .card { padding: 28px 20px; background: #191a18; border: 1px solid #30332e; border-radius: 12px; }
-    .card .emoji { font-size: 34px; }
-    .card p { color: #aaa; line-height: 1.7; font-size: 14px; }
-    .ip { display: inline-block; background: #1c211a; border: 1px solid #41663b; border-radius: 8px; padding: 17px 22px; color: #a4f18b; font-weight: bold; margin: 15px 0; overflow-wrap: anywhere; }
-    footer { text-align: center; padding: 28px 15px; border-top: 1px solid #292929; color: #888; font-size: 13px; }
-    @media(max-width: 600px) {
-      header { padding: 18px 5%; flex-wrap: wrap; gap: 14px; }
-      nav a { margin-left: 10px; font-size: 12px; }
-      section { padding: 48px 5%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f2efff">
+<title>NİSAREA | Minecraft Network</title>
+<style>
+:root {
+  --purple: #795de0;
+  --purple-dark: #5742aa;
+  --blue: #dceeff;
+  --lavender: #f1edff;
+  --white: #ffffff;
+  --text: #34304b;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #f3f5ff;
+  color: var(--text);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+.topbar {
+  background: white;
+  padding: 20px 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  box-shadow: 0 3px 18px #7664bd12;
+}
+.brand {
+  color: var(--purple-dark);
+  font-size: 32px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.avatar {
+  width: 56px;
+  height: 56px;
+  image-rendering: pixelated;
+  border-radius: 9px;
+  background: var(--blue);
+}
+.profile-name { font-size: 19px; font-weight: bold; }
+.profile-link {
+  display: block;
+  color: var(--purple);
+  font-size: 14px;
+  margin-top: 5px;
+  font-style: italic;
+}
+.nav-wrap {
+  background: linear-gradient(100deg, #e8e0ff, #e1f1ff);
+  padding: 0 3%;
+  border-top: 1px solid #eee9ff;
+  border-bottom: 1px solid #e1e6fa;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 27px;
+  max-width: 1700px;
+  margin: auto;
+}
+nav a {
+  display: inline-block;
+  padding: 22px 0;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 700;
+  color: #5948a5;
+  transition: color .2s, transform .2s;
+}
+nav a:hover {
+  color: #9275f5;
+  transform: translateY(-2px);
+}
+.hero {
+  min-height: 440px;
+  margin: 30px 4%;
+  padding: 65px 20px;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 15% 15%, #ffffff 0, transparent 40%),
+    linear-gradient(130deg, #e4dcff, #d9efff 75%, #f8f6ff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.tag {
+  color: #7056c7;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+h1 {
+  color: #6048b7;
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 3px;
+  margin: 18px 0;
+}
+.hero p {
+  max-width: 650px;
+  line-height: 1.8;
+  font-size: 18px;
+  color: #625d7c;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 24px;
+}
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--purple);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 16px #795de02b;
+}
+.btn.light {
+  background: white;
+  color: var(--purple-dark);
+}
+section.content {
+  margin: 30px 4%;
+  padding: 45px 25px;
+  text-align: center;
+  background: white;
+  border: 1px solid #ebe8fa;
+  border-radius: 20px;
+}
+h2 {
+  color: var(--purple-dark);
+  font-size: 30px;
+  font-style: italic;
+}
+.description {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #77728e;
+  line-height: 1.8;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+.card {
+  background: linear-gradient(145deg, #f5f1ff, #eef8ff);
+  border: 1px solid #e8e3fb;
+  padding: 27px 18px;
+  border-radius: 16px;
+}
+.card .emoji { font-size: 36px; }
+.card h3 { color: #604cb2; font-style: italic; }
+.card p { color: #77728e; line-height: 1.7; }
+.server-ip {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 17px 22px;
+  background: #f1edff;
+  color: #654bc1;
+  border: 1px solid #dcd2ff;
+  border-radius: 10px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+footer {
+  padding: 30px 15px;
+  text-align: center;
+  background: white;
+  color: #827d99;
+  font-size: 14px;
+  line-height: 1.8;
+}
+@media(max-width: 760px) {
+  .topbar { padding: 16px 4%; gap: 12px; }
+  .brand { font-size: 25px; }
+  .avatar { width: 43px; height: 43px; }
+  .profile-name { font-size: 16px; }
+  .profile-link { font-size: 12px; }
+  .nav-wrap { padding: 0 12px; }
+  nav { justify-content: flex-start; gap: 0 20px; }
+  nav a { font-size: 18px; padding: 13px 0; }
+  .hero { min-height: 360px; padding: 45px 17px; }
+  section.content { padding: 32px 16px; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">NİSAREA<span>.</span></div>
-    <nav>
-      <a href="#hakkinda">Hakkında</a>
-      <a href="#ozellikler">Özellikler</a>
-      <a href="#katil">Sunucuya Katıl</a>
-    </nav>
-  </header>
 
-  <main>
-    <div class="hero">
-      <div class="tag">MINECRAFT SUNUCUSU</div>
-      <h1>NİS<span>AREA</span></h1>
-      <p>Yeni bir dünya, yeni maceralar ve unutulmaz anlar. NİSAREA'da kendi hikâyeni yazmaya hazır mısın?</p>
-      <div class="buttons">
-        <a class="btn" href="#katil">SUNUCUYA KATIL</a>
-        <a class="btn secondary" href="#hakkinda">KEŞFET</a>
-      </div>
+<header class="topbar">
+  <a class="brand" href="#anasayfa">NİSAREA</a>
+  <div class="profile">
+    <img class="avatar"
+      src="https://mc-heads.net/avatar/Notch/64"
+      alt="Minecraft oyuncu kafası">
+    <div>
+      <div class="profile-name">Misafir</div>
+      <a class="profile-link" href="#giris">Giriş yap veya kayıt ol</a>
     </div>
+  </div>
+</header>
 
-    <section id="hakkinda">
-      <h2>NİSAREA Dünyasına Hoş Geldin</h2>
-      <p class="muted">Arkadaşlarınla keşfet, yapılar inşa et ve topluluğumuzun bir parçası ol. Macera seni bekliyor!</p>
-    </section>
+<div class="nav-wrap">
+  <nav>
+    <a href="#anasayfa">Anasayfa</a>
+    <a href="#magaza">Mağaza</a>
+    <a href="#destek">Destek</a>
+    <a href="#discord">Discord</a>
+    <a href="#oy-verme">Oy Verme</a>
+    <a href="#cezalar">Ceza Alanlar</a>
+    <a href="#adminlik">Adminlik Başvurusu</a>
+    <a href="#gizlilik">Gizlilik Sözleşmesi</a>
+    <a href="#hizmet">Hizmet Sözleşmesi</a>
+  </nav>
+</div>
 
-    <section id="ozellikler">
-      <h2>Neden NİSAREA?</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">⛏️</div>
-          <h3>Özgür Macera</h3>
-          <p>Kendi tarzında oyna, keşfet ve dünyanı oluştur.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">🌍</div>
-          <h3>Birlikte Oyna</h3>
-          <p>Diğer oyuncularla tanış ve yeni dostluklar kur.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">⚔️</div>
-          <h3>Yeni Deneyimler</h3>
-          <p>NİSAREA topluluğunda macerana hemen başla.</p>
-        </div>
-      </div>
-    </section>
+<main>
+  <div class="hero" id="anasayfa">
+    <div class="tag">MINECRAFT NETWORK</div>
+    <h1>NİSAREA</h1>
+    <p>Yeni bir dünya, yeni maceralar ve unutulmaz anlar.
+    NİSAREA dünyasında kendi hikâyeni yazmaya hazır mısın?</p>
+    <div class="buttons">
+      <a class="btn" href="#sunucu">Sunucuya Katıl</a>
+      <a class="btn light" href="#discord">Topluluğumuza Katıl</a>
+    </div>
+  </div>
 
-    <section id="katil">
-      <h2>Aramıza Katıl!</h2>
-      <p class="muted">Sunucu adresimizi kopyala ve Minecraft'a giriş yap.</p>
-      <div class="ip" id="server-ip">SUNUCU_IP_ADRESİNİ_BURAYA_YAZ</div>
-      <div>
-        <button class="btn" onclick="copyIP()">IP ADRESİNİ KOPYALA</button>
-      </div>
-      <p id="copy-message" class="muted"></p>
-      <p class="muted">Discord bağlantımızı yakında burada paylaşacağız.</p>
-    </section>
-  </main>
+  <section class="content" id="magaza">
+    <h2>NİSAREA Mağaza</h2>
+    <p class="description">Mağaza yakında burada olacak.</p>
+  </section>
 
-  <footer>© 2026 NİSAREA Minecraft Sunucusu · Tüm hakları saklıdır.</footer>
+  <section class="content" id="destek">
+    <h2>Destek Merkezi</h2>
+    <p class="description">Yardım ve destek bilgileri yakında eklenecek.</p>
+  </section>
 
-  <script>
-    function copyIP() {
-      const ip = document.getElementById("server-ip").textContent.trim();
-      if (ip === "SUNUCU_IP_ADRESİNİ_BURAYA_YAZ") {
-        document.getElementById("copy-message").textContent =
-          "Önce gerçek sunucu adresi eklenmeli.";
-        return;
-      }
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(ip).then(() => {
-          document.getElementById("copy-message").textContent = "Sunucu adresi kopyalandı!";
-        }).catch(() => {
-          document.getElementById("copy-message").textContent = "Adres: " + ip;
-        });
-      } else {
-        document.getElementById("copy-message").textContent = "Adres: " + ip;
-      }
-    }
-  </script>
+  <section class="content" id="discord">
+    <h2>Discord Topluluğu</h2>
+    <p class="description">Discord davet bağlantısını eklediğimizde buradan topluluğumuza katılabileceksin.</p>
+  </section>
+
+  <section class="content" id="oy-verme">
+    <h2>Sunucumuza Oy Ver</h2>
+    <p class="description">Oy verme bağlantısı yakında eklenecek.</p>
+  </section>
+
+  <section class="content" id="cezalar">
+    <h2>Ceza Alanlar</h2>
+    <p class="description">Ceza listesi henüz bağlanmadı.</p>
+  </section>
+
+  <section class="content" id="adminlik">
+    <h2>Adminlik Başvurusu</h2>
+    <p class="description">Başvuru formu yakında eklenecek.</p>
+  </section>
+
+  <section class="content" id="gizlilik">
+    <h2>Gizlilik Sözleşmesi</h2>
+    <p class="description">Gizlilik politikası metni hazırlanacak.</p>
+  </section>
+
+  <section class="content" id="hizmet">
+    <h2>Hizmet Sözleşmesi</h2>
+    <p class="description">Hizmet koşulları metni hazırlanacak.</p>
+  </section>
+
+  <section class="content" id="giris">
+    <h2>Üye Girişi</h2>
+    <p class="description">Giriş ve kayıt sistemi henüz etkin değil.</p>
+  </section>
+
+  <section class="content" id="sunucu">
+    <h2>Sunucuya Katıl</h2>
+    <p class="description">Minecraft sunucu adresimiz:</p>
+    <div class="server-ip">SUNUCU_IP_ADRESİNİ_BURAYA_YAZ</div>
+    <p class="description">Gerçek IP adresini daha sonra buraya ekleyeceğiz.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>NİSAREA</strong> · Minecraft Network<br>
+  © 2026 NİSAREA. Tüm hakları saklıdır.
+</footer>
+
 </body>
 </html>

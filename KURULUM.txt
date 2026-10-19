@@ -1,0 +1,11 @@
+NİSAREA Firebase bağlantısı
+
+1) Bu ZIP içindeki dosyaları GitHub'daki BixNsare/nisarea-site deposuna çıkarıp mevcut dosyalarla değiştirin. nisarea-hero.png dosyası da kökte bulunmalı.
+2) Firebase Console > Firestore Database > Rules bölümüne girin. firestore.rules dosyasındaki kuralları yapıştırıp Publish/Yayınla düğmesine basın. Kurallar yayımlanmadan rapor gönderimi hata verebilir.
+3) Firebase Console > Authentication > Settings > Authorized domains listesinde bixnsare.github.io bulunduğunu doğrulayın.
+4) Authentication > Sign-in method bölümünde Email/Password etkin olmalı.
+5) Siteyi https://bixnsare.github.io/nisarea-site/ adresinde test edin. Önce giris.html sayfasında kayıt olun, sonra destek.html üzerinden deneme raporu gönderin.
+
+Güvenlik: Firebase web config içindeki apiKey istemci uygulamalarında kullanılmak üzere tasarlanır. Firestore Rules güvenliği sağlar. Bu kurallar rapor oluşturmayı yalnızca giriş yapmış kullanıcılara açar ve raporların web istemcisinden okunmasını engeller. Raporları görüntülemek için daha sonra güvenli yönetici erişimi ayrıca kurulmalıdır.
+
+Not: Bu sürümde kullanıcı e-postası profil adı olarak gösterilir. İsterseniz ileride görünen oyuncu adını ayrıca ayarlayabiliriz.
